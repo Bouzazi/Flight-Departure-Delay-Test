@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+# Remove a potentially pre-existing server.pid for Rails.
+rm -f /rails/tmp/pids/server.pid
+
+# Ensure the database is prepared
+bundle exec rails db:create db:migrate
+
+exec "$@"
